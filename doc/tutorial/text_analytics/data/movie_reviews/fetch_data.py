@@ -26,8 +26,8 @@ if not DATA_FOLDER.exists():
         assert sha256(ARCHIVE_NAME.read_bytes()).hexdigest() == ARCHIVE_SHA256
 
         print("Decompressing %s" % ARCHIVE_NAME)
-        with tarfile.open(ARCHIVE_NAME, "r:gz") as archive:
-            archive.extractall(path=".")
+        with closing(tarfile.open(ARCHIVE_NAME, "r:gz")) as archive:
+            archive.extractall(path='.')
 
     finally:
         ARCHIVE_NAME.unlink()
