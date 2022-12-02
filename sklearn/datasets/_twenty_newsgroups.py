@@ -74,7 +74,8 @@ def _download_20newsgroups(target_dir, cache_path):
     archive_path = _fetch_remote(ARCHIVE, dirname=target_dir)
 
     logger.debug("Decompressing %s", archive_path)
-    tarfile.open(archive_path, "r:gz").extractall(path=target_dir)
+    with closing(tarfile.open(ARCHIVE_NAME, "r:gz")) as archive:
+    archive.extractall(path='.')
     os.remove(archive_path)
 
     # Store a zipped pickle
