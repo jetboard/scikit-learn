@@ -390,6 +390,7 @@ def get_package_with_constraint(package_name, build_metadata, uses_pip=False):
 
 
 environment = Environment(trim_blocks=True, lstrip_blocks=True)
+environment = Environment(autoescape=False, extensions=['jinja.ext.autoescape'])
 environment.filters["get_package_with_constraint"] = get_package_with_constraint
 
 
