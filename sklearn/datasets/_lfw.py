@@ -108,7 +108,8 @@ def _check_fetch_lfw(data_home=None, funneled=True, download_if_missing=True):
         import tarfile
 
         logger.debug("Decompressing the data archive to %s", data_folder_path)
-        tarfile.open(archive_path, "r:gz").extractall(path=lfw_home)
+        with closing(tarfile.open(ARCHIVE_NAME, "r:gz")) as archive:
+            archive.extractall(path='.')
         remove(archive_path)
 
     return lfw_home, data_folder_path
