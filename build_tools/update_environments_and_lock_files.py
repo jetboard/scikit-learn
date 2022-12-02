@@ -40,7 +40,7 @@ from importlib.metadata import version
 
 import click
 
-from jinja2 import Environment
+from jinja2.sandbox import SandboxedEnvironment # noqa
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -389,8 +389,7 @@ def get_package_with_constraint(package_name, build_metadata, uses_pip=False):
     return f"{package_name}{constraint}{comment}"
 
 
-environment = Environment(trim_blocks=True, lstrip_blocks=True)
-environment = Environment(autoescape=False, extensions=['jinja.ext.autoescape'])
+environment = SandboxedEnvironment(trim_blocks=True, lstrip_blocks=True)
 environment.filters["get_package_with_constraint"] = get_package_with_constraint
 
 
