@@ -42,7 +42,7 @@ if len(sys.argv) >= 3:
     if len(sys.argv) > 3:
         groups = sys.argv[4:]
 
-svg_file = xml.dom.minidom.parse(sys.argv[1])
+svg_file = minidom.parse(sys.argv[1])
 svg = svg_file.getElementsByTagName("svg")[0]
 
 raw_width = float(svg.getAttribute("width"))
